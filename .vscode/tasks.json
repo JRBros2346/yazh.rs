@@ -1,0 +1,53 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Build Engine",
+			"command": "cargo build -p engine",
+			"options": {
+				"cwd": "${workspaceFolder}",
+			},
+			"problemMatcher": [
+				"$rustc",
+				"$rust-panic",
+				"$rustc-json",
+				"$rustc-watch"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Build Testbed",
+			"command": "cargo build -p --testbed",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$rustc",
+				"$rust-panic",
+				"$rustc-json",
+				"$rustc-watch"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Build Everything",
+			"command": "cargo build --workspace",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$rustc",
+				"$rust-panic",
+				"$rustc-json",
+				"$rustc-watch"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
