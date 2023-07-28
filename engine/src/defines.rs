@@ -1,3 +1,4 @@
+// Platform detection
 #[cfg(windows)]
 pub const WINDOWS: bool = true;
 #[cfg(not(windows))]
@@ -6,6 +7,7 @@ pub const WINDOWS: bool = false;
 compile_error!("64-bit is required on windows!");
 
 #[cfg(target_os = "linux")]
+// Linux OS
 pub const LINUX: bool = true;
 #[cfg(not(target_os = "linux"))]
 pub const LINUX: bool = false;
@@ -15,22 +17,26 @@ pub const ANDROID: bool = true;
 #[cfg(not(target_os = "android"))]
 pub const ANDROID: bool = false;
 
+// Catch anything not caught by the above.
 #[cfg(unix)]
 pub const UNIX: bool = true;
 #[cfg(not(unix))]
 pub const UNIX: bool = false;
 
 #[cfg(target_vendor = "apple")]
+// Apple platform
 pub const APPLE: bool = true;
 #[cfg(not(target_vendor = "apple"))]
 pub const APPLE: bool = false;
 
 #[cfg(target_os = "ios")]
+// iOS device
 pub const IOS: bool = true;
 #[cfg(not(target_os = "ios"))]
 pub const IOS: bool = false;
 
 #[cfg(target_os = "macos")]
+// Other kinds of Mac OS
 pub const MACOS: bool = true;
 #[cfg(not(target_os = "macos"))]
 pub const MACOS: bool = false;
