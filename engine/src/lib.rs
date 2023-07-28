@@ -1,4 +1,4 @@
-pub mod defines;
+mod defines;
 pub use defines::*;
 
-pub mod test_mod;
+pub mod core;
