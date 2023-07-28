@@ -1,13 +1,12 @@
-use engine::core::logger;
-use engine::core::asserts;
+use engine::core;
 
 fn main() {
-    logger::LogFatal!("A test message: {}", std::f64::consts::PI);
-    logger::LogError!("A test message: {}", std::f64::consts::PI);
-    logger::LogWarn!("A test message: {}", std::f64::consts::PI);
-    logger::LogInfo!("A test message: {}", std::f64::consts::PI);
-    logger::LogDebug!("A test message: {}", std::f64::consts::PI);
-    logger::LogTrace!("A test message: {}", std::f64::consts::PI);
+    core::LogFatal!("A test message: {}", std::f64::consts::PI);
+    core::LogError!("A test message: {}", std::f64::consts::PI);
+    core::LogWarn!("A test message: {}", std::f64::consts::PI);
+    core::LogInfo!("A test message: {}", std::f64::consts::PI);
+    core::LogDebug!("A test message: {}", std::f64::consts::PI);
+    core::LogTrace!("A test message: {}", std::f64::consts::PI);
 
-    asserts::Assert!(1 == 0);
+    core::Assert!(1 == 0);
 }
