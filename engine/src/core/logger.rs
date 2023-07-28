@@ -1,5 +1,3 @@
-use crate::defines::*;
-
 use std::fmt;
 
 pub const WARN: bool = true;
@@ -43,11 +41,15 @@ impl fmt::Display for LogLevel {
     }
 }
 
+// TODO: Remove this.
+#[allow(dead_code)]
 fn initialize() -> bool {
     // TODO: create log file.
     true
 }
 
+// TODO: Remove this.
+#[allow(dead_code)]
 fn shutdown() {
     // TODO: cleanup logging/write queued entries.
 }
