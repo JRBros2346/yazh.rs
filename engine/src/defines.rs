@@ -1,27 +1,31 @@
+pub use cfg_if::cfg_if;
+
 // Platform detection
-#[cfg(windows)]
-pub const WINDOWS: bool = true;
-#[cfg(not(windows))]
-pub const WINDOWS: bool = false;
-#[cfg_attr(windows, cfg(not(target_pointer_width = "64")))]
-compile_error!("64-bit is required on windows!");
-
-#[cfg(target_os = "linux")]
-// Linux OS
-pub const LINUX: bool = true;
-#[cfg(not(target_os = "linux"))]
-pub const LINUX: bool = false;
-
-#[cfg(target_os = "android")]
-pub const ANDROID: bool = true;
-#[cfg(not(target_os = "android"))]
-pub const ANDROID: bool = false;
-
-// Catch anything not caught by the above.
-#[cfg(unix)]
-pub const UNIX: bool = true;
-#[cfg(not(unix))]
-pub const UNIX: bool = false;
+cfg_if! {
+    if #[cfg(windows)] {
+        pub const WINDOWS: bool = true;
+        #[cfg(not(target_pointer_width = "64"))]
+        compile_error!("64-bit is required on Windows!");
+    } else if #[cfg(target_os = "linux")]{
+        pub const LINUX: bool = true;
+        #[cfg(target_os = "android")]
+        pub const ANDROID: bool = true;
+    } else if #[cfg(unix)]{
+        pub const UNIX: bool = true;
+    // } else if #[cfg(target_os = "posix")]{
+    //     pub const POSIX: bool = true;
+    } else if #[cfg(target_vendor = "apple")]{
+        pub const APPLE: bool = true;
+        cfg_if! {
+            if #[cfg(ios simulator)] {
+                pub const IOS: bool = true;
+                pub const IOS_SIMULATOR: bool = true;
+            } else if #[cfg(target_os = "ios")] {
+                pub const IOS: bool = true;
+            }
+        }
+    }
+}
 
 #[cfg(target_vendor = "apple")]
 // Apple platform

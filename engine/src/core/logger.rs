@@ -59,6 +59,7 @@ macro_rules! logoutput {
     ($level:expr, $format:expr, $($format_args:expr),*) => {
         let is_error = $level < $crate::core::logger::LogLevel::Warn;
 
+        // TODO: Platform specific
         if is_error {
             std::eprintln!("{}: {}", $level, std::format!($format, $($format_args),*));
         } else {
